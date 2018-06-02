@@ -1,0 +1,53 @@
+SERVICE_CHARGE = 2
+
+TICKET_PRICE = 10 # Assuming this won't change so, all upper, Constant
+
+tickets_remaining = 100 # This is going to change so not all upper
+
+# Create the calculate_price function. It takes number of tickets and returns
+#   num_tickets * TICKET_PRICE
+def calculate_price(number_of_tickets):
+    #Create a new constant for the 2 dollar service charge
+    #Add service charge to what is due
+    return (number_of_tickets * TICKET_PRICE) + SERVICE_CHARGE
+
+while tickets_remaining >= 1: 
+    print("{} ticket(s) remaining!!!!".format(tickets_remaining))
+    name = input("What is your name? ")
+    num_tickets = input("Hi {}, how many ticket(s) would you like? ".format(name))
+    # Expect a ValueError to happen and handle it appropriately...remember to test it out!!
+    try:
+        num_tickets = int(num_tickets)
+        # Raise a ValueError if the request is for more tickets than are available
+        if num_tickets > tickets_remaining:
+            raise ValueError("There are only {} tickets remaining".format(tickets_remaining))
+    except ValueError as err:
+        # Include the error text in the output
+        print("Oh no, we ran into an issue. {}. please try again!!!!".format(err))
+    else:          
+        amount_due = calculate_price(num_tickets)
+        print("Your total is {}".format(amount_due))
+        should_proceed = input("Would you like to purchase? Y/N ")
+        if should_proceed.lower() == "y":
+            print("SOLD")
+            # TODO: Gather credit card information and process it
+            tickets_remaining -= num_tickets
+        else:    
+            print("Thank you for visiting the site {}".format(name))
+print("SOLD OUT!")
+
+
+# Run this code continuously until tickets are 0 
+    #Output how many tickets are remaining using the tickets_remaining variable 
+    #Gather the user's name and assign it to a new variable
+    # Prompt the user by name and ask how many tickets they would like
+    # Calculate the price (number of tickets multiplied by the price) and assign it to a variable
+    # Output the price to the screen
+    # Prompt user if they want to proceed Y/N?
+    # If they want to proceed
+        # Print out to the screen "SOLD" to confirm purchase
+        # and then decrement the tickets remaining by the number of tickets purchased
+#in place subtraction, same as tr = tr - nt
+    # Otherwise.....
+        # Thank them by name
+    # Notify users when tickets are sold out
